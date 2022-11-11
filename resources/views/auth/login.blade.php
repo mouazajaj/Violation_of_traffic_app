@@ -20,8 +20,8 @@
               <form method="POST" action="{{ route('login') }}">
               @csrf
               <div>
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-jet-label for="National_Number" value="{{ __('National_Number') }}" />
+                <x-jet-input id="National_Number" class="block mt-1 w-full" type="National_Number" name="National_Number" :value="old('National_Number')" required autofocus />
             </div>
 
             <div class="mt-4">
