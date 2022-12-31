@@ -1,17 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Car;
+use App\Models\Types;
 use App\Models\Violation;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Response;
-use App\Models\Types;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+
 class ViolationsController extends Controller
 {
-    
 
- 
+
+
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +23,7 @@ class ViolationsController extends Controller
     public function index()
     {
 
-        return(Violation::all());
+        return (Violation::all());
     }
 
     /**
@@ -28,7 +31,7 @@ class ViolationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-  
+
 
     /**
      * Store a newly created resource in storage.
@@ -38,25 +41,19 @@ class ViolationsController extends Controller
      */
     public function store(Request $request)
     {
-       
-        $attr = $request->validate([
-            'type' => ['required','max:100'],
-            'location' => ['required','max:255'],
-            'user_id' => ['required','max:255'],
-            'car_id'=>['required','max:50'],
-           
-        ]);
-        
+
+        $attr = $request->validate([]);
+
         $violation = Violation::create([
 
             'type' => $attr['type'],
-            'location' =>$attr['location'],
-            'user_id' => $attr['user_id'],
-            'car_id'=>$attr['car_id'],
-            'price'=>Types::where('type','fast')->value('price'),
-            
+            'location' => $attr['location'],
+            'car_number' => $attr['car_number'],
+            'user_id' => Car::where('car_number', 'fast')->value('price'),
+            'price' => Types::where('type', 'fast')->value('price'),
+
         ]);
-        $response=['violation'=>$violation];
+        $response = ['violation' => $violation];
         return response()->json($response);
     }
 
@@ -68,28 +65,27 @@ class ViolationsController extends Controller
      */
     public function show($id)
     {
-        
+
         return Violation::find($id);
     }
 
     public function myviolations()
     {
-        
-        $id=Auth::id();
-        return(Violation::all()->where('user_id',$id));
+
+        $id = Auth::id();
+        return (Violation::all()->where('user_id', $id));
     }
-    
-  
-   
+
+
+
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $ids
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Violation $violation)
     {
-        
     }
 
     /**
@@ -101,7 +97,7 @@ class ViolationsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $violation=Violation::find($id);
+        $violation = Violation::find($id);
         $violation->update($request::all());
         return $violation;
     }
@@ -118,25 +114,22 @@ class ViolationsController extends Controller
     }
     public function search($name)
     {
-        
-        return Violation::where('name','like','%'.$name.'%')->get();
+
+        return Violation::where('name', 'like', '%' . $name . '%')->get();
     }
     public function addtype(Request $request)
-    {   
-        
+    {
+
         $attr = $request->validate([
-            'type' => ['required','unique:types'],
+            'type' => ['required', 'unique:types'],
             'price' => ['required']
         ]);
         $type = Types::create([
             'type' => $attr['type'],
-            'price' =>$attr['price']
+            'price' => $attr['price']
         ]);
 
-        $response=['type',$type];
+        $response = ['type', $type];
         return response()->json($response);
-        
-       
     }
-   
 }

@@ -10,11 +10,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Violation extends Model
 {
     use HasFactory;
-   
-    protected $fillable = ['User_id','Car_Number','type','price','location'];
-    protected $casts = [
-        'type' => TypesEnum::class,];
-    
+
+    protected $fillable = ['User_id', 'Car_Number', 'type', 'price', 'location'];
+
+
     public function Car()
     {
         return $this->belongsTo(Car::class);

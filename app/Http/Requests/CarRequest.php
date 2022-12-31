@@ -24,10 +24,10 @@ class CarRequest extends FormRequest
     public function rules()
     {
         return [
-            'Model' => ['nullable','max:100'],
-            'Car_Number' => ['required','unique:cars','max:8'],
-            'Financial_fees' => ['required','date'],
-            'User_id' => ['required'],
+            'Model' => ['nullable', 'max:50'],
+            'Car_Number' => ['required', 'unique:cars', 'max:8'],
+            'Financial_fees' => ['required', 'date'],
+            'National_Number' => ['required', 'exists:users,National_Number'],
         ];
     }
 }

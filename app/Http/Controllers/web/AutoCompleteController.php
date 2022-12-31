@@ -4,6 +4,7 @@ namespace App\Http\Controllers\web;
 
 use App\Models\Car;
 
+use App\Models\User;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -34,5 +35,14 @@ class AutoCompleteController extends Controller
 
 return response()->json($res);
     }
+
+
+public function autocomplete2(Request $request)
+{ $res = User::select("National_Number")
+   ->where("National_Number","LIKE","%{$request->term}%")
+   ->get();
+
+return response()->json($res);
+}
 }
 

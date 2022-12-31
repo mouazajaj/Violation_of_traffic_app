@@ -18,9 +18,8 @@ class ViolationsController extends Controller
      */
     public function index()
     {
-        $violations=Violation::all();
-        $violation_types=Violation_Type::all()->pluck('type');
-        return view('manageviolations',['violations'=>$violations,'violation_types'=>$violation_types]);
+        $violations = Violation::all();
+        return view('violations.manage_violations', ['violations' => $violations]);
     }
 
     /**
@@ -30,8 +29,8 @@ class ViolationsController extends Controller
      */
     public function create()
     {
-         $violation_types=Violation_Type::all()->pluck('type');
-        return view('add_violation',['violation_types'=>$violation_types]);
+        $violation_types = Violation_Type::all()->pluck('type');
+        return view('violations.add_violation', ['violation_types' => $violation_types]);
     }
 
     /**
@@ -42,13 +41,12 @@ class ViolationsController extends Controller
      */
     public function store(ViolationRequest $request)
     {
-       
-       
-        $price=Violation_Type::where('type',$request->input('type'))->value('price');
-        $user_id=Car::where('Car_Number',$request->input('Car_Number'))->value('User_id');
-        $request->merge(['price' => $price,'User_id'=>$user_id]);
+
+        $price = Violation_Type::where('type', $request->input('type'))->value('price');
+        $user_id = Car::where('Car_Number', $request->input('Car_Number'))->value('User_id');
+        $request->merge(['price' => $price, 'User_id' => $user_id]);
         Violation::create($request->post());
-        return redirect()->route('violations.index')->with('success','Company has been created successfully.');
+        return redirect()->route('violations.index')->with('success', 'Company has been created successfully.');
     }
 
     /**
@@ -68,9 +66,10 @@ class ViolationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Violation $violation)
     {
-        //
+        $violation_types = Violation_Type::all()->pluck('type');
+        return view('violations.edit_violation', ['violation' => $violation, 'violation_types' => $violation_types]);
     }
 
     /**
@@ -80,13 +79,13 @@ class ViolationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Violation $violation)
-    {   
-        $price=Violation_Type::where('type',$request->input('type'))->value('price');
-        $user_id=Car::where('Car_Number',$request->input('Car_Number'))->value('User_id');
-        $request->merge(['price' => $price,'User_id'=>$user_id]);
+    public function update(ViolationRequest $request, Violation $violation)
+    {
+        $price = Violation_Type::where('type', $request->input('type'))->value('price');
+        $user_id = Car::where('Car_Number', $request->input('Car_Number'))->value('User_id');
+        $request->merge(['price' => $price, 'User_id' => $user_id]);
         $violation->fill($request->post())->save();
-        return redirect()->route('violations.index')->with('success','Company Has Been updated successfully');
+        return redirect()->route('violations.index')->with('success', 'Company Has Been updated successfully');
     }
 
     /**
@@ -98,9 +97,8 @@ class ViolationsController extends Controller
     public function destroy(Violation $violation)
     {
         $violation->delete();
-        
+
         return redirect()->route('violations.index')
-                        ->with('success','Product deleted successfully');
+            ->with('success', 'Product deleted successfully');
     }
-   
 }

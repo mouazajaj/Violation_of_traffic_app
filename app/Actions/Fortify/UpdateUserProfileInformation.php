@@ -19,8 +19,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     public function update($user, array $input)
     {
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'National_Number' => ['required', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'Full_name' => ['required', 'string', 'max:100'],
+            'National_Number' => ['required', 'max:11', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
         ])->validateWithBag('updateProfileInformation');
 

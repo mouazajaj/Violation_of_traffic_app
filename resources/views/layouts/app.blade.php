@@ -1,56 +1,71 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+ <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Fonts -->
-        <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Bootstrap CRUD Data Table for Database with Modal Form</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<link href="{{asset('css/manage.css')}}" rel="stylesheet">
-        <link href="{{asset('vendor/animate.css/animate.min.css')}}" rel="stylesheet">
-        <script src="{{asset('js/manage.js')}}"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-        <!-- Styles -->
-        @livewireStyles
-    </head>
-    <body class="font-sans antialiased">
-        <x-jet-banner />
+  <link href="{{asset('vendor/animate.css/animate.min.css')}}" rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="{{asset('vendor/php-email-form/validate.js')}}" rel="stylesheet">
+  <link href="{{asset('vendor/animate.css/animate.min.css')}}" rel="stylesheet">
+  <link href="{{asset('vendor/aos/aos.css')}}" rel="stylesheet">
+  <link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{asset('vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+  <link href="{{asset('vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+  <link href="{{asset('vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
+  <link href="{{asset('vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
 
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+  <!-- Template Main CSS File -->
+  <link href="{{asset('css/style.css')}}" rel="stylesheet">
+  <link href="{{asset('css/box.css')}}" rel="stylesheet">
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
+  <!-- Google Fonts Roboto -->
 
-        @stack('modals')
+  <script type="text/javascript" src="{{asset('js/mdb.min.js')}}"></script>
+  <!-- Custom scripts -->
+  <script type="text/javascript"></script>
+  <!-- Vendor JS Files -->
+  <script src="{{asset('vendor/purecounter/purecounter_vanilla.js')}}"></script>
+  <script src="{{asset('vendor/aos/aos.js')}}"></script>
+  <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{asset('vendor/glightbox/js/glightbox.min.js')}}"></script>
+  <script src="{{asset('vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+  <script src="{{asset('vendor/swiper/swiper-bundle.min.js')}}"></script>
+  <script src="{{asset('vendor/waypoints/noframework.waypoints.js')}}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="{{asset('vendor/php-email-form/validate.js')}}"></script>
 
-        @livewireScripts
-    </body>
+  <!-- MDB -->
+  <script type="text/javascript" src="{{asset('js/mdb.min.js')}}"></script>
+
+  <script type="text/javascript" src="{{asset('js/main.js')}}"></script>
+  <!-- Scripts -->
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Material Design for Bootstrap</title>
+  <!-- MDB icon -->
+
+  <!-- MDB -->
+</head>
+
+<body class=" bg-dark" style="max-width:100%;">
+
+
+    <div class=" font-sans text-gray-900 antialiased ">
+        {{ $slot }}
+    </div>
+
+
+</body>
+
 </html>

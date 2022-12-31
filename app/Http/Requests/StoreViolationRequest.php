@@ -24,9 +24,10 @@ class StoreViolationRequest extends FormRequest
     public function rules()
     {
         return [
-            
-            'Car_Number'=>['required'],
-            'User_id'=>['required'],
+
+            'type' => ['required', 'max:100'],
+            'location' => ['required', 'max:255'],
+            'Car_Number' => ['required', 'max:8'],
         ];
     }
 }
