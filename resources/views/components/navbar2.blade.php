@@ -17,9 +17,30 @@
                      @if (Route::has('login'))
                      @auth
                      @role('Admin')
-                     <li><a href="{{route('users.index')}}">Users</a></li>
                      <li><a href="{{route('cars.index')}}">Cars</a></li>
                      <li><a href="{{route('violations.index')}}">Violations</a></li>
+                     <div class="ml-3 relative">
+
+                         <x-jet-dropdown>
+                             <x-slot name="trigger">
+                                 <button type="button" class="px-3 py-2 text-light">
+                                     Users
+
+                                 </button>
+                             </x-slot>
+
+                             <x-slot name="content">
+
+                                 <x-jet-dropdown-link href="{{ route('users.index') }}">
+                                     {{ __('Clients') }}
+                                 </x-jet-dropdown-link>
+                                 <x-jet-dropdown-link href="{{ route('employees.index') }}">
+                                     {{ __('Employees') }}
+                                 </x-jet-dropdown-link>
+
+                             </x-slot>
+                         </x-jet-dropdown>
+                     </div>
 
                      @endrole
                      @role('Employee')
